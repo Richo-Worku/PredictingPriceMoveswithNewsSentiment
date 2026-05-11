@@ -21,6 +21,7 @@ def analyze_stock(file_path):
     # =====================================================
 
     df["daily_return"] = df["close"].pct_change()
+    df.head(5);
 
     # =====================================================
     # Moving Averages (SMA + EMA)
@@ -32,9 +33,7 @@ def analyze_stock(file_path):
 
         # Simple Moving Average
         df[f"sma_{w}"] = (
-            df["close"]
-            .rolling(window=w)
-            .mean()
+           df["close"].rolling(window=10).mean()
         )
 
         # Exponential Moving Average
@@ -69,6 +68,5 @@ def analyze_stock(file_path):
     # Handle Missing Values
     # =====================================================
 
-    df = df.dropna()
 
     return df
